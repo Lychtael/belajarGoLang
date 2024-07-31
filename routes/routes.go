@@ -34,6 +34,5 @@ func SetupRouter() *gin.Engine {
 	r.GET("/login", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "login.html", gin.H{})
 	})
-
 	return r
 }
