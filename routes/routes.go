@@ -17,22 +17,17 @@ func SetupRouter() *gin.Engine {
 	r.LoadHTMLGlob("templates/*")
 
 	// User routes
-	r.POST("/register", handlers.RegisterUser)
-	r.POST("/login", handlers.LoginUser)
-	r.GET("/users/:id", handlers.GetUserByID)
-	r.GET("/users/username/:username", handlers.GetUserByUsername)
-	r.GET("/users/roles", handlers.GetUserRoles)
+	r.POST("/login", handlers.LoginHandler)
 
-	// Admin routes
-	r.POST("/admin/register", handlers.RegisterAdmin)
-	r.POST("/admin/login", handlers.LoginAdmin)
+	// Serve the user page
+	r.GET("/pageUser", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "pageUser.html", gin.H{})
+	})
 
-	// Provider routes
-	r.GET("/providers", handlers.GetProviders)
-
-	// Render the login page
-	r.GET("/login", func(c *gin.Context) {
+	// Root URL
+	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "login.html", gin.H{})
 	})
+
 	return r
 }

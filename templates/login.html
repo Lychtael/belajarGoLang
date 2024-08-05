@@ -38,18 +38,72 @@
       cursor: pointer;
       width: 100%;
     }
+    .error-message {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .loading {
+      text-align: center;
+      display: none;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>Login</h2>
-    <form>
+    <form id="loginForm">
       <label for="email">Email:</label>
       <input type="text" id="email" name="email" placeholder="Enter your email" required>
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" placeholder="Enter your password" required>
       <button type="submit">Login</button>
+      <div class="loading">Loading...</div>
+      <div class="error-message"></div>
     </form>
   </div>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#loginForm').on('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting the default way
+
+        var email = $('#email').val();
+        var password = $('#password').val();
+        var $button = $('button');
+        var $loading = $('.loading');
+        var $error = $('.error-message');
+
+        // Clear previous error message
+        $error.text('');
+
+        // Show loading indicator
+        $loading.show();
+        $button.prop('disabled', true);
+
+        $.ajax({
+          url: '/login',
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({ email: email, password: password }),
+          success: function() {
+            // Redirect to user page on successful login
+            window.location.href = '/pageUser';
+          },
+          error: function(xhr) {
+            // Handle errors
+            var errorMsg = 'An error occurred: ' + (xhr.responseJSON ? xhr.responseJSON.error : 'Unknown error');
+            $error.text(errorMsg);
+          },
+          complete: function() {
+            // Hide loading indicator and enable button
+            $loading.hide();
+            $button.prop('disabled', false);
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>

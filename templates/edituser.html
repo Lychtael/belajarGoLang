@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit User</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      width: 500px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+      /* Hide password characters */
+      -webkit-text-security: disc;
+      text-security: disc;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+    .nav-links {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+.nav-link {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+}
+</style>
+</head>
+<body>
+    <div class="nav-links">
+        <a href="#" class="nav-link">Users</a>
+        <a href="#" class="nav-link">Providers</a>
+        <a href="#" class="nav-link">Admin Januar</a>
+    </div>
+  <div class="container">
+    <h2>Edit User</h2>
+    <form>
+      <label for="id">ID:</label>
+      <input type="text" id="id" value="ABC123" disabled>
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" value="Januar Muhtadiin">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" value="januar@muhtadiin.id">
+
+      <label for="role">Role:</label>
+      <select id="role">
+        <option value="RS Januar Muhtadiin">RS Januar Muhtadiin</option>
+        </select>
+
+      <label for="active">Active:</label>
+      <select id="active">
+        <option value="Active">Active</option>
+        </select>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="*******">
+
+      <label for="confirm-password">Confirm Password:</label>
+      <input type="password" id="confirm-password" placeholder="*******">
+
+      <button type="submit">Save</button>
+    </form>
+  </div>
+</body>
+</html>
